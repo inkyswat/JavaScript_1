@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Esimene katsetus</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="main.js"></script>
+<style>
+
+</style>
+</head>
+<body>
+    <h1 id="pealkiri"></h1>
+    <input type="text" id="tekst">
+    <input type="submit" id="nupp" value="Vajuta Siia!">
+    <script>
+        console.log("tere");
+        var tekstiKast = document.getElementById("tekst"); 
+        // document on HTML dokumendi poole pöödrumine
+        var tekstiNupp = document.getElementById("nupp");
+        // var -> muutuja defineerimine, ei ole tüübi tundlik
+        tekstiNupp.addEventListener("click", function(e){ // sündmuse kuulaja, kuulame sündmust click
+        // parameeter e sisaldab infot mouse kohta
+            console.log(e);
+            alert(tekstiKast.value);
+        });
+
+        var fn = function(tekst){
+            console.log(tekst);
+        }
+        const konstant = 1;
+
+        // var -> skoobi tundlik, ehk siis näiteks funktsioonis
+        // let -> blokkskoop tundlik (väiksem skoop)
+        var arv1 = 5;
+
+        var massiiv1 = new Array();
+        var massiiv2 = [
+            1,
+            "tekst",
+            [
+                1,0
+            ],
+            false
+        ];
+        
+        for (let i = 0; i < massiiv2.length; i++) {
+            console.log(massiiv2[i]); // kuvab konsooli massiivi sisu           
+        }
+        
+        document.getElementById("pealkiri").innerHTML = document.title; // innerHTML HTML tag'ide vahel eksisteeriv.
+                                                                        // dokumendi sisu, isegi kui on veel html TAG'e ja muud teksti seal vahel
+        document.getElementById("nupp").value = document.title; // value on väärtus
+
+    </script>
+</body>
+</html>
