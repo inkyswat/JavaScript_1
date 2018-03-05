@@ -1,4 +1,3 @@
-    <script>
         console.log("tere");
         var tekstiKast = document.getElementById("tekst");
         // document on HTML dokumendi poole pöödrumine
@@ -44,7 +43,3 @@
         
         kast.innerHTML = "tere";
         kast.appendChild(link.cloneNode(true)); // cloneNode kopeerib tagi ja true
-
-        
-
-    </script>
