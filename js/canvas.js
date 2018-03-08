@@ -90,13 +90,13 @@ var canvas = document.getElementById('canvas_3'),
     var pall_1 = { 
         x: parseInt(Math.random() * canvas.width), // suvaline x asukoht
         y: parseInt(Math.random() * canvas.height), // suvaline y asukoht
-        r: parseInt(30 + Math.random() * 20) // suvaline raadius 30 - 50px vahemikus
+        r: parseInt(15 + Math.random() * 20) // suvaline raadius 30 - 50px vahemikus
     }
 
     var pall_2 = {
         x: parseInt(Math.random() * canvas.width),
         y: parseInt(Math.random() * canvas.height),
-        r: parseInt(30 + Math.random() * 20)
+        r: parseInt(45 + Math.random() * 20)
     }
     var pallid = [pall_1, pall_2];
     // arvutame pallide keskpunktide kaugused teine teise suhtes
@@ -106,7 +106,14 @@ var canvas = document.getElementById('canvas_3'),
     console.log(kaugus);
 for (var i = 0; i < pallid.length; i++) { // seni ketrata kuni i on väiksem kui massiiviindeks e. massiivi pikkus
     ctx3.beginPath();
+    ctx3.font = "20px serif";
+    ctx3.fillText("Pallide ringjoonte kaugus = " + parseInt(kaugus) + "px", 5, 25);
     ctx3.arc(pallid[i].x, pallid[i].y, pallid[i].r, 0, 2*Math.PI); // massiivi sees oleva objekti omaduste kaudu andmete ligi saamisele
-    ctx3.stroke();
-
+    ctx3.fill();
+    if(kaugus < 0) {
+        ctx3.fillText("Pallid on koos", 5, 55);
+    }
+    else {
+        ctx3.fillText("Pallid on eraldi", 5, 55);
+    }
 } 
