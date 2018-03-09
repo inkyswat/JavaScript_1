@@ -14,7 +14,7 @@
     ctx.strokeStyle = "#259";
     ctx.lineWidth = 3;
     ctx.rect(40, 70, 100, 50);
-    ctx.stroke();    
+    ctx.stroke();
 
     // jooned
 var x_jooned = 150;
@@ -46,10 +46,10 @@ var radius_kaar = 50;
     ctx.beginPath();
     ctx.arc(x_kaar + 100, y_kaar, radius_kaar, 2* Math.PI, Math.PI, 1);
     ctx.lineTo(canvas.width, canvas.height);
-    ctx.stroke();    
+    ctx.stroke();
 
     // tekst
-    var font_size = "30px";    
+    var font_size = "30px";
     var x_tekst = 10;
     var y_tekst = 150;
     ctx.font = font_size + " " + "serif";
@@ -85,9 +85,9 @@ window.onload = function() {
 // pütaagorase teoreem
 var canvas = document.getElementById('canvas_3'),
     ctx3 = canvas.getContext('2d');
-    
+
     // teeme objekti
-    var pall_1 = { 
+    var pall_1 = {
         x: parseInt(Math.random() * canvas.width), // suvaline x asukoht
         y: parseInt(Math.random() * canvas.height), // suvaline y asukoht
         r: parseInt(15 + Math.random() * 20) // suvaline raadius 30 - 50px vahemikus
@@ -116,4 +116,4 @@ for (var i = 0; i < pallid.length; i++) { // seni ketrata kuni i on väiksem kui
     else {
         ctx3.fillText("Pallid on eraldi", 5, 55);
     }
-} 
+}

@@ -31,7 +31,6 @@
         for (let i = 0; i < massiiv2.length; i++) {
             console.log(massiiv2[i]); // kuvab konsooli massiivi sisu
         }
-
         document.getElementById("pealkiri").innerHTML = document.title; // innerHTML HTML tag'ide vahel eksisteeriv.
                                                                         // dokumendi sisu, isegi kui on veel html TAG'e ja muud teksti seal vahel
         document.getElementById("nupp").value = document.title; // value on väärtus
@@ -40,6 +39,6 @@
         link.innerHTML = "see on lingi tekst!";
         link.href = "#";
         document.body.appendChild(link);
-        
+
         kast.innerHTML = "tere";
         kast.appendChild(link.cloneNode(true)); // cloneNode kopeerib tagi ja true
