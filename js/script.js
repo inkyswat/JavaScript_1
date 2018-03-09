@@ -14,6 +14,7 @@
         }
         const konstant = 1;
 
+
         // var -> skoobi tundlik, ehk siis näiteks funktsioonis
         // let -> blokkskoop tundlik (väiksem skoop)
         var arv1 = 5;
