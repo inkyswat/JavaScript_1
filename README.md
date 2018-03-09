@@ -15,4 +15,6 @@ Toimus II korda JavaScripti loeng.
 
 Õppisime canvase sisse looma erinevaid kujutisi.
 
+### 9.märts.2018
 
+lisasin CSS_colors.css faili js kausta -> 139 värvi defineeritud
