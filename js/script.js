@@ -8,12 +8,10 @@
             console.log(e);
             alert(tekstiKast.value);
         });
-
         var fn = function(tekst){
             console.log(tekst);
         }
         const konstant = 1;
-
 
         // var -> skoobi tundlik, ehk siis näiteks funktsioonis
         // let -> blokkskoop tundlik (väiksem skoop)

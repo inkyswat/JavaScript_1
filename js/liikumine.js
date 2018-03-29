@@ -10,18 +10,18 @@ var ruut = {
 }
 
 var ruut2 = {
-    x: 50,
-    y: 9.8,
-    w: 20,
-    h: 20,
-    kiirus: 4
+    x: 60,
+    y: 500,
+    w: 25,
+    h: 25,
+    kiirus: -32
 }
 
 // canvase refreshimine
 
-var gravity = .96;
-var bounce = 0.8;
-var bounce_2 = 0.7;
+var gravity = .98;
+var bounce = 0.99;
+var bounce_2 = 0.5;
 
     function arvuta () {
         ruut.kiirus += gravity;
@@ -56,5 +56,5 @@ var bounce_2 = 0.7;
         }
 
 
-        
+
 requestAnimationFrame(joonista);
