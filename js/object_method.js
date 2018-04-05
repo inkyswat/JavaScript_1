@@ -36,12 +36,12 @@ class wheel {
             if (this.radius < 1) {
                 this.radius = 0;
             }
-            // else if (this.direction > 0 && this.direction < 90 || this.direction > 270 && this.direction < 360) {
+            else if (this.direction > 0 && this.direction < 90 || this.direction > 270 && this.direction < 360) {
                 
-            // }
-            // else if (this.direction > 90 && this.direction < 270) {
+            }
+            else if (this.direction > 90 && this.direction < 270) {
 
-            // }
+            }
             else if (direction == 0 || direction == 360) {
                 this.posX += this.MoveSpeed;
             }
@@ -96,12 +96,12 @@ function joonista() {
 var ctx = getCanvas();
 var wheels = [];
 for (let i = 0; i < 10; i++) {
-    var r = parseInt(10 + Math.random() * 10);
-    var x = parseInt(r + Math.random() * (canvas.width - 2 * r)); // et pall tekiks canvase alass on vaja ruudu laius maha lahutada
-    var y = parseInt(r + Math.random() * (canvas.height - 2 * r));
-    let MoveSpeed = parseInt(1 + Math.random()*5);
+    let r = parseInt(10 + Math.random() * 10);
+    let x = parseInt(r + Math.random() * (canvas.width - 2 * r)); // et pall tekiks canvase alass on vaja ruudu laius maha lahutada
+    let y = parseInt(r + Math.random() * (canvas.height - 2 * r));
+    let MoveSpeed = parseInt(5 + Math.random()*5);
     let direction = 90*parseInt(Math.random()*4);
-    let Accel = Math.random()*0.010-0.06;
+    let Accel = Math.random()*0.012-0.06;
     let radiusChange = 0.8 + Math.random() * 0.1;
     wheels.push(new wheel(x, y, MoveSpeed, 0, r, radiusChange , direction, Accel));
 }
