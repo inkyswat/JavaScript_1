@@ -1,6 +1,6 @@
 var canvas = document.getElementById('canvas');
 var ctx = canvas.getContext('2d');
-var canvasLocation = canvas.getBoundingClientRect();
+var canvasLocation = canvas.getBoundingClientRect(); // canvase asukoha akna suhtes teada saamiseks, et hiire asukohta määrata ntx
 
  
     function joonista() {
@@ -25,24 +25,27 @@ var canvasLocation = canvas.getBoundingClientRect();
    var pallid = [];
    for(var i = 0; i < 10; i++) {
        var r = parseInt(10 + Math.random() * 30);
-       var x = parseInt(r + Math.random() * (canvas.width - 2*r)); // et pall tekiks canvase alass on vaja
+       var x = parseInt(r + Math.random() * (canvas.width - 2*r)); // et pall tekiks canvase alass on vaja ruudu laius maha lahutada
        var y = parseInt(r + Math.random() * (canvas.height - 2*r));
        pallid.push(new Pall(x,y,r));
    }     
 requestAnimationFrame(joonista);
+// hiire kliki kauguse määramine objektidest
 
 window.addEventListener("mousedown", function(e) {
     var hx = e.clientX - canvasLocation.x;
     var hy = e.clientY - canvasLocation.y;
-
+    console.log(" ");
     for (var i = 0; i < pallid.length; i++) {
+        
         var kaugus_x = pallid[i].x - hx;
         var kaugus_y = pallid[i].y - hy;
         var kaugus = Math.sqrt(kaugus_x * kaugus_x + kaugus_y * kaugus_y) - pallid[i].r;
+        console.log(kaugus);
         if (kaugus <= 0) {
-            // pallid[i].r += 0.1*pallid[i].r;
-            // i++;
-            // pallid.splice(i, 1); // alustab kustutamist, ja kui palju
+            pallid[i].r += 0.1*pallid[i].r;
+            console.log("array index=" + i);
+        //    pallid.splice(i, 1); // alustab kustutamist, ja kui palju
 
             pallid[i].x += kaugus_x;
             pallid[i].y += kaugus_y;
@@ -51,6 +54,5 @@ window.addEventListener("mousedown", function(e) {
         }
 
     }
-
 });
 
