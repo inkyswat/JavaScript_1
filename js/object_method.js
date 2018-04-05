@@ -2,18 +2,18 @@ var canvas = document.getElementById('canvas');
 var ctx = canvas.getContext('2d');
 
 var ratas = {
-    radius: 120,
-    radiusChange: -1.5,
-    SpinSpeed: 30, // revs/min
     posX: 300,
     posY: 300,
-    direction: 90,
     MoveSpeed: 5,
+    SpeedLimit: -20,
+    radius: 120,
+    radiusChange: -1.1,
+    direction: 90,
     Accel: -0.09,
     move: function (direction = "") {
         console.log(this.MoveSpeed);
         
-        if (this.MoveSpeed >= -20.001) {
+        if (this.MoveSpeed >= this.SpeedLimit) {
       //      console.log(this.MoveSpeed);
             this.radius += this.radiusChange; // radius ei tohi olla negatiivne, siis peksab seghast!
             if (this.radius < 1) {
