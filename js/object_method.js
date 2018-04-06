@@ -39,10 +39,12 @@ class wheel {
             else if (this.direction > 0 && this.direction < 90 || this.direction > 270 && this.direction < 360) {
 
 
-                this.posY = Math.sin(this.direction);
-                this.posX = Math.cos(this.direction);
+                this.posY += this.MoveSpeed * Math.sin(this.direction);
+                this.posX += this.MoveSpeed * Math.cos(this.direction);
             }
             else if (this.direction > 90 && this.direction < 180 || this.direction > 180 && this.direction < 270) {
+                this.posY += this.MoveSpeed * Math.sin(this.direction);
+                this.posX += this.MoveSpeed * Math.cos(this.direction);
 
             }
             else if (direction == 0 || direction == 360) {
@@ -97,8 +99,8 @@ for (let i = 0; i < 100; i++) {
     let r = parseInt(10 + Math.random() * 30);
     let x = parseInt(r + Math.random() * (canvas.width - 2 * r)); // et pall tekiks canvase alass on vaja ruudu laius maha lahutada
     let y = parseInt(r + Math.random() * (canvas.height - 2 * r));
-    let MoveSpeed = 2 + parseInt(Math.random()*40);
-    let direction = 90*parseInt(Math.random()*4);
+    let MoveSpeed = 2 + parseInt(Math.random()*30);
+    let direction = 360*(Math.random());
     let Accel = Math.random()*0.022;
     let radiusChange = Math.random() * 0.9 - 1;
     wheels.push(new wheel(350, 300, MoveSpeed, 1, r, radiusChange , direction, Accel));
