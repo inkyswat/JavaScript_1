@@ -12,15 +12,15 @@ class wheel {
     this.Accel = Accel;
     this.ctx = getCanvas();
     }
-    getPosX() {
-        return this.posX; //klassist andmete kätte saamine
-    }
-    getPosY() {
-        return this.posY; //klassist andmete kätte saamine
-    }
-    getRadius() {
-        return this.radius; //klassist andmete kätte saamine
-    }
+    // getPosX() {
+    //     return this.posX; //klassist andmete kätte saamine
+    // }
+    // getPosY() {
+    //     return this.posY; //klassist andmete kätte saamine
+    // }
+    // getRadius() {
+    //     return this.radius; //klassist andmete kätte saamine
+    // }
 
 
     move (direction = this.direction) {
@@ -33,13 +33,16 @@ class wheel {
 
 // console.log(direction);
 
-            if (this.radius < 1) {
+            if (this.radius < 1) { // paneme raadiuse nulliks kui tahab negatiivseks minna
                 this.radius = 0;
             }
             else if (this.direction > 0 && this.direction < 90 || this.direction > 270 && this.direction < 360) {
-                
+
+
+                this.posY = Math.sin(this.direction);
+                this.posX = Math.cos(this.direction);
             }
-            else if (this.direction > 90 && this.direction < 270) {
+            else if (this.direction > 90 && this.direction < 180 || this.direction > 180 && this.direction < 270) {
 
             }
             else if (direction == 0 || direction == 360) {
@@ -83,11 +86,6 @@ function joonista() {
     wheels[i].draw(wheels[i].posX, wheels[i].posY, wheels[i].radius);
     wheels[i].move();
  }
-    // ctx.beginPath();
-    // ctx.arc(ratas.posX, ratas.posY, ratas.radius, 0, 2 * Math.PI);
-    // ctx.fill();
-    // wheel1.draw(wheel1.getPosX(),wheel1.getPosY(),wheel1.getRadius());
-    // wheel1.move(0);
 
     
     requestAnimationFrame(joonista); // refreshimine jääb seisma kui mujale tab'i peale minna
@@ -95,18 +93,21 @@ function joonista() {
 }
 var ctx = getCanvas();
 var wheels = [];
-for (let i = 0; i < 10; i++) {
-    let r = parseInt(10 + Math.random() * 10);
+for (let i = 0; i < 100; i++) {
+    let r = parseInt(10 + Math.random() * 30);
     let x = parseInt(r + Math.random() * (canvas.width - 2 * r)); // et pall tekiks canvase alass on vaja ruudu laius maha lahutada
     let y = parseInt(r + Math.random() * (canvas.height - 2 * r));
-    let MoveSpeed = parseInt(5 + Math.random()*5);
+    let MoveSpeed = 2 + parseInt(Math.random()*40);
     let direction = 90*parseInt(Math.random()*4);
-    let Accel = Math.random()*0.012-0.06;
-    let radiusChange = 0.8 + Math.random() * 0.1;
-    wheels.push(new wheel(x, y, MoveSpeed, 0, r, radiusChange , direction, Accel));
+    let Accel = Math.random()*0.022;
+    let radiusChange = Math.random() * 0.9 - 1;
+    wheels.push(new wheel(350, 300, MoveSpeed, 1, r, radiusChange , direction, Accel));
 }
 // var wheel1 = new wheel(100, 100, 5, 1, 30, 1.1, 270, -0.05);
-
+    for (let index = 0; index < wheels.length; index++) {
+        console.log(wheels[index].direction);
+    }
+        
 requestAnimationFrame(joonista);
 
 function time(milliseconds) {
