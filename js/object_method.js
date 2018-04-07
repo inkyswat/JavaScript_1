@@ -1,15 +1,51 @@
 
+// Converts from degrees to radians.
+Math.radians = function (degrees) {
+    return degrees * Math.PI / 180;
+};
+
+// Converts from radians to degrees.
+Math.degrees = function (radians) {
+    return radians * 180 / Math.PI;
+};
+var menu = {
+    width: 300,
+    border: 4,
+    bg_color: "#a0e2de",
+    text_color: "#010101",
+    fontSize: "17px serif"
+}
+var checkbox = {
+    width: 20,
+    height: 20
+}
+function draw_checkbox(posX, posY) {
+    ctx.beginPath();
+    ctx.lineWidth = 2;
+    ctx.moveTo(posX, posY); // määrab punkti asukoha
+    ctx.lineTo(posX + checkbox.width, posY);// määrab joone uue suuna
+    ctx.lineTo(posX + checkbox.width, posY + checkbox.height);// määrab joone uue suuna
+    ctx.lineTo(posX, posY + checkbox.height);// määrab joone uue suuna
+    ctx.closePath(); // sulgeb joonte jada alguspunktiga kokku
+    ctx.stroke();
+
+
+    // this.ctx.beginPath();
+    // this.ctx.fillRect()
+    // this.ctx.fillStyle = "#0a0178";
+    // this.ctx.fill();
+    
+}
 class wheel {
     constructor (posX, posY, MoveSpeed, radius, radiusChange, direction, Accel) {
-
-    this.posX = posX;
-    this.posY = posY;
-    this.MoveSpeed = MoveSpeed;
-    this.radius = radius;
-    this.radiusChange = radiusChange;
-    this.direction = direction;
-    this.Accel = Accel;
-    this.ctx = getCanvas();
+        this.posX = posX;
+        this.posY = posY;
+        this.MoveSpeed = MoveSpeed;
+        this.radius = radius;
+        this.radiusChange = radiusChange;
+        this.direction = direction;
+        this.Accel = Accel;
+        this.ctx = getCanvas();
     }
     manipul (direction = this.direction) {
         
@@ -21,12 +57,12 @@ class wheel {
                 this.radius = 0;
             }
             else if (this.direction > 0 && this.direction < 90 || this.direction > 270 && this.direction < 360) {
-                this.posY += this.MoveSpeed * Math.cos(this.direction);
-                this.posX += this.MoveSpeed * Math.sin(this.direction);
+                this.posY += this.MoveSpeed * Math.cos(Math.radians(this.direction));
+                this.posX += this.MoveSpeed * Math.sin(Math.radians(this.direction));
             }
             else if (this.direction > 90 && this.direction < 180 || this.direction > 180 && this.direction < 270) {
-                this.posY += this.MoveSpeed * Math.cos(this.direction);
-                this.posX += this.MoveSpeed * Math.sin(this.direction);
+                this.posY += this.MoveSpeed * Math.cos(Math.radians(this.direction));
+                this.posX += this.MoveSpeed * Math.sin(Math.radians(this.direction));
             }
             else if (direction == 0 || direction == 360) {
                 this.posX += this.MoveSpeed;
@@ -54,6 +90,7 @@ class wheel {
     draw (posX, posY, radius) {
         this.ctx.beginPath();
         this.ctx.arc(posX, posY, radius, 0, 2 * Math.PI);
+        this.ctx.fillStyle = "#0a0178";
         this.ctx.fill();
     }
 }
@@ -62,10 +99,13 @@ var getCanvas = function() {
     var ctx = canvas.getContext('2d');
     return ctx;
 }
+
+// MAIN LOOP
 function joonista() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
- for (let i = 0; i < wheels.length; i++) {
-    
+    ClearCanvas(); // canvase puhastamine   
+    DrawMenu();  // menüü joonistamine   
+ // objektide joonistamine   
+ for (let i = 0; i < wheels.length; i++) {   
     wheels[i].draw(wheels[i].posX, wheels[i].posY, wheels[i].radius);
     wheels[i].manipul();
  }
@@ -76,19 +116,41 @@ function joonista() {
 var ctx = getCanvas();
 wheel.iterations = 1;
 var wheels = [];
-for (let i = 0; i < 700; i++) {
-    let r = parseInt(10 + Math.random() * 10);
+for (let i = 0; i < 100; i++) {
+    let r = parseInt(10 + Math.random() * 15);
     let x = parseInt(r + Math.random() * (canvas.width - 2 * r)); // et pall tekiks canvase alass on vaja ruudu laius maha lahutada
     let y = parseInt(r + Math.random() * (canvas.height - 2 * r));
-    let MoveSpeed = 1.2+parseInt(Math.random()*4);
-    let direction = 360*(Math.random());
+    let MoveSpeed = 1.2+parseInt(Math.random()*9);
+    var direction = 360*Math.random();
     let Accel = Math.random()*0.022-0.034;
     let radiusChange = Math.random() * 1.3 - 1.25;
-    wheels.push(new wheel(350, 300, MoveSpeed, r, radiusChange , direction, Accel));
+    wheels.push(new wheel(400, 300, MoveSpeed, r, radiusChange , direction, Accel));
 }
 // var wheel1 = new wheel(100, 100, 5, 1, 30, 1.1, 270, -0.05);
+
+
 requestAnimationFrame(joonista);
+
+// var muhkel = Math.radians(direction);
+// console.log(muhkel);
+// console.log(direction);
+
+
 
 function time(milliseconds) {
     var millisecond = setTimeout()
 }
+function DrawMenu() {
+    ctx.fillStyle = "#0";
+    ctx.fillRect(canvas.width-menu.width-1, 0, 1, canvas.height);
+    ctx.fillStyle = menu.bg_color;
+    ctx.fillRect(canvas.width - menu.width + menu.border, menu.border, menu.width - menu.border*2, canvas.height-menu.border*2);
+    ctx.fillStyle = menu.text_color;
+    ctx.font = menu.fontSize;
+    ctx.fillText("Pallide katsetused!", canvas.width - menu.width + menu.border + 4, menu.border + 17);
+    draw_checkbox(10,10);
+}
+function ClearCanvas() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+}
+// checkbox
