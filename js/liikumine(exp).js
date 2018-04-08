@@ -39,7 +39,7 @@ function arvuta () {
 
     if (ruut.x_kiirus > 1) {
       counter = counter + 0.1;
-      ruut.x_kiirus *= ((1/(counter))+0.94);
+      ruut.x_kiirus *= ((1/(counter))+0.93);
       // ruut.x_kiirus *= (-0.2*counter+1);
     }
     else {
