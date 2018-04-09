@@ -18,7 +18,7 @@ var menu = {
 var checkbox = {
     width: 10,
     height: 10,
-    line_width: 3
+    line_width: 5
 }
 function draw_checkbox(posX, posY) {
     ctx.beginPath();
@@ -27,6 +27,7 @@ function draw_checkbox(posX, posY) {
     ctx.lineTo(posX + checkbox.width, posY + checkbox.height);// määrab joone uue suuna
     ctx.lineTo(posX, posY + checkbox.height);// määrab joone uue suuna
     ctx.closePath(); // sulgeb joonte jada alguspunktiga kokku
+    ctx.strokeStyle = "#333";
     ctx.stroke();
 
 
@@ -94,13 +95,13 @@ class wheel {
         this.ctx.arc(posX, posY, radius, 0, 2 * Math.PI);
         // this.ctx.fillStyle = "#" + BallCol;//"#0a0178";
 
-        if (this.direction < 120) {
+        if (this.direction <= 180) {
             this.ctx.lineWidth = 2;
             this.ctx.strokeStyle = "#" + (parseInt(this.direction)*10).toString();//"#0a0178";
             this.ctx.stroke();
 
         }
-        else {
+        if (this.direction > 180) {
             this.ctx.fillStyle = "#" + (parseInt(this.direction)*5).toString();//"#0a0178";
             this.ctx.fill();
         }
@@ -113,10 +114,10 @@ var getCanvas = function() {
 }
 
 function time(milliseconds) {
-    var millisecond = setTimeout()
+    var millisecond = setTimeout() 
 }
 function DrawMenu() {
-    ctx.fillStyle = "#0";
+    ctx.fillStyle = "#010101";
     ctx.fillRect(canvas.width-menu.width-1, 0, 1, canvas.height);
     ctx.fillStyle = menu.bg_color;
     ctx.fillRect(canvas.width - menu.width + menu.border, menu.border, menu.width - menu.border*2, canvas.height-menu.border*2);
@@ -147,14 +148,14 @@ function joonista() {
 
 var ctx = getCanvas();
 var wheels = [];
-for (let i = 0; i < 500; i++) {
-    let r = parseInt(10 + Math.random() * 45);
+for (let i = 0; i < 300; i++) {
+    let r = parseInt(90 + Math.random() * 145);
     let x = parseInt(r + Math.random() * (canvas.width - 2 * r)); // et pall tekiks canvase alass on vaja ruudu laius maha lahutada
     let y = parseInt(r + Math.random() * (canvas.height - 2 * r));
-    let MoveSpeed = 1+parseInt(Math.random()*8);
+    let MoveSpeed = 1+parseInt(Math.random()*0);
     var direction = 360*Math.random();
-    let Accel = Math.random()*0.03-0.04;
-    let radiusChange = Math.random() * 1.3 - 1.1;
+    let Accel = Math.random()*0.0-0.00;
+    let radiusChange = Math.random() * 2.3 - 2.9;
     wheels.push(new wheel(400, 300, MoveSpeed, r, radiusChange , direction, Accel));
 }
 // var wheel1 = new wheel(100, 100, 5, 1, 30, 1.1, 270, -0.05);
