@@ -18,3 +18,9 @@ Toimus II korda JavaScripti loeng.
 ### 9.märts.2018
 
 lisasin CSS_colors.css faili js kausta -> 139 värvi defineeritud
+
+### 9.aprill.2018
+
+object_method arendamine
+
+plaan saada interaktiivseks, hiirega liigutamisel muuta parameetreid
