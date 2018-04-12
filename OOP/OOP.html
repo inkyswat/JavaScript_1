@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>oop</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <style>
+.hide {
+    display: none;
+}
+#canvas {
+    border: 1px #444 solid;
+}
+    </style>
+</head>
+<body>
+    <canvas id="canvas" height="600" width="600"></canvas>
+    <script src="class/Stage.js"></script>
+    <script src="class/Shape.js"></script>
+    <script src="class/Circle.js"></script>
+    <script src="class/Rectangle.js"></script>
+    <script>
+        var stage = new Stage(document.getElementById("canvas"));
+        var circle1 = new Circle(20, 20, 20, "#ff0000"); // loob objekti circle1 kasutades Circle class'i constructorit
+        stage.add(circle1);
+
+        var circle2 = new Circle(160, 40, 40, "#ff4400"); // loob objekti circle1 kasutades Circle class'i constructorit
+        stage.add(circle2);
+
+        var rectangle1 = new Rectangle(200, 90, 40, 30, "#0044ee"); // loob objekti circle1 kasutades Circle class'i constructorit
+        stage.add(rectangle1);
+
+
+    </script>    
+</body>
+</html>
+<!--
+#a0e2de -->
