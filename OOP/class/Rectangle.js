@@ -8,7 +8,7 @@ class Rectangle extends Shape { // laieneb Shape klassile,
 	draw(ctx) {
 		ctx.beginPath();
 		ctx.fillStyle = this.getColor();
-	    ctx.rect(this.x, this.y, this.h, this.w);
+	    ctx.rect(this.x, this.y, this.w, this.h);
 		ctx.fill();
 		ctx.closePath();
 	}

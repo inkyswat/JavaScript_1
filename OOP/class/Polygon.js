@@ -1,6 +1,6 @@
 class Polygon extends Shape { // laieneb Shape klassile, 
 	constructor(x, y, r, corners, color) {
-		super(x, y, color); // käivitab ülemklassi konstructori
+		super(x, y, color); // käivitab ülemklassi constructori
 		this.corners = corners;
 	}
 

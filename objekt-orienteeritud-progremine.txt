@@ -1,0 +1,41 @@
+OOP 3 põhimõtet
+
+kapseldamine - eesmärk on kõik seotud asjad kokku võtta ja panna ühte klasse
+
+põlvnemine - klasside hirerhiad , võrreldav darvini evolutsiooniga
+
+polümorfism - on võimalik kõik järglas klassi nõudvad.... 
+võib üle kirjutada eelneva klassi poolt defineeritud
+
+
+
+siduda kokku andmied ja nendega tehtavad operatsioonid -> objektid
+
+suureks minevate projektidega on hallatavatus oluline
+
+objektid luuakse klassidest
+
+objekti normaalsesse seisu saada on vaja konstruktorit
+
+------------
+
+property - on võimalik panna muutujate moodi välja nägevad asjad panna toimima nagu funktsioonid
+omadused kui info andjatena
+
+objektile võid lisada omadusi
+toimib JavaScriptis ja Pythonis toimib.
+
+staatilised ja tüpiseeritud keeled ei võimalda seda
+
+
+---------------
+
+objekti sees saab klassi tasandi muutujaid muuta.
+näiteks 
+loendur mis on klassis defineeritud võimaldab lugeda loodud objektide arvu.
+
+
+
+staatiline meetod
+
+
