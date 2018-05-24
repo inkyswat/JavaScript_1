@@ -1,0 +1,37 @@
+<html>
+    <head>
+        <title>Katse</title>
+    </head>
+    <body>
+
+        <script>
+    // alustuseks defineerima objekti, mis tegeleb kogu selle päringuga
+    // nagu koodist näha, kasutatakse igal pool objekti xhr meetodeid ja omadusi
+    var xhr = new XMLHttpRequest();
+
+    // onreadystatechange kuulab sündmust (eventlistener), kui xhr -i omadus readyState on muutunud.
+    // ning kui see muutub, siis käivitatakse see sama funktsioon, mis on omistatud onreadystatechange -ile.
+    xhr.onreadystatechange = function () {
+        // kontrollime, et readyState oleks 4, mis tähendab edukat päringut ("done")
+        // ning lisaks http staatusekoodi, et see oleks 200, mis tähendab "OK"
+        // staatuskoodide spetsifikatsioon: https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            // kui kõik on korras, siis xhr objektil peaks olema omadus responseText, kus on serverilt saadud päringu sisu
+            // see on teksti kujul, seepärast on allpool konsooli logitud esialgne server vastus
+            console.log(xhr.responseText);
+            // ning siis muudetud see javascripti objektiks
+            var json = JSON.parse(xhr.responseText);
+            console.log(json);
+        }
+    }
+    // siin ütleme, mis meetodit kasutame, ning päringu sihtkoht.
+    xhr.open("GET", "http://tigu.hk.tlu.ee/~kairo.koik/loeng/26_04_2018/api.php", true);
+
+    // siin saadame päringu. Siin kohal peab arvestama, et see toimub asükroonselt,
+    // mis tähendab, et üleval olev funktsioon käivitub siis, kui serverilt on saadud vastus.
+    xhr.send();    
+        
+        </script>
+
+    </body>    
+</html>

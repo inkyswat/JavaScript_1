@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>XHR</title>
+</head>
+<style>
+    .hind {
+        color: green;
+    }
+</style>
+<body>
+
+    <ul id="tooted"></ul>
+
+    <div> <!-- input -->
+        <input type="text" name="nimi" id="toote_nimi"><br>
+        <input type="text" name="price" id="toote_hind"><br>
+        <button id="lisa_toode">Lisa Toode</button>
+    </div>
+    <script> // vormist väärtused muutujatesse
+        var toote_nimi = document.getElementById("toote_nimi");
+        var toote_hind = document.getElementById("toote_hind");
+        var lisa_toode = document.getElementById("lisa_toode");
+
+        lisa_toode.addEventListener("click", function(e) { // kuulame nupu vajutust
+            var xhr = new XMLHttpRequest();
+            
+            xhr.onreadystatechange = function() {
+                if(xhr.readyState == 4) {
+                    var response = JSON.parse(xhr.responseText);
+                    console.log(response);
+                    if(response.code == 1) {
+                        tootedList.innerHTML += 
+                        "<li>" + toote_nimi.value +
+                        " - <span class='hind'>" + toote_hind.value +
+                        "</span></li>";
+                    }
+                }
+            }
+
+            xhr.open("POST", "http://tigu.hk.tlu.ee/~oliver.roots/veebirakendused/III%20loeng/api.php", true); // false on sünkroonne request, ehk siis muud tegemised jäävad seisma, meil on vaja asünkroonset
+            xhr.send(JSON.stringify
+                ({
+                    name: toote_nimi.value,
+                    price: toote_hind.value,
+                    desc: ""
+                })
+            );
+            //xhr.send("name=" + toote_nimi.value + "&price=" + toote_hind.value + "&desc=");
+        });
+
+        var tootedList = document.getElementById("tooted");
+        var xhr = new XMLHttpRequest();
+
+        xhr.onreadystatechange = function() {
+            if(xhr.readyState == 4) {
+                var response = xhr.responseText;
+                var data = JSON.parse(response);
+                console.log(data);
+
+                for(var i = 0; i < data.length; i++) {
+                    tootedList.innerHTML += "<li id='toode_" + data[i].id + "'>" + data[i].name 
+                                         + " - <span class='hind'>" 
+                                         + data[i].price + "</span> <span class='kustuta' toote_id='" + data[i].id + "'>x</span></li>";
+                }
+
+                var kustutaNupud = document.getElementsByClassName("kustuta");
+
+                for(var i = 0; i < kustutaNupud.length; i++) {
+                    var nupp = kustutaNupud[i];
+                    nupp.addEventListener("click", function(e) {
+                        console.log(nupp, this, e);
+                        var toote_id = this.attributes.toote_id.value;
+                        kustutaToode(toote_id);
+                    });
+                }
+
+
+            }
+
+        
+        }
+
+        xhr.open("GET", "http://tigu.hk.tlu.ee/~oliver.roots/veebirakendused/III%20loeng/api.php", true);
+        xhr.send();
+
+
+        var kustutaToode = function(id) {
+            var xhr = new XMLHttpRequest();
+
+            xhr.onreadystatechange = function() {
+                if(xhr.readyState == 4) {
+                    var response = xhr.responseText;
+                    var data = JSON.parse(response);
+
+                    if(data.code == 1) {
+                        var el = document.getElementById("toode_" + id);
+                        el.innerHTML = "";
+                        // siin peaks kustutama <li> elemendi
+                    }
+                }
+            }
+
+            xhr.open("DELETE", "http://tigu.hk.tlu.ee/~oliver.roots/veebirakendused/III%20loeng/api.php?id=" + id, true);
+            xhr.send();
+
+        }
+    </script>
+
+    
+</body>
+</html>
